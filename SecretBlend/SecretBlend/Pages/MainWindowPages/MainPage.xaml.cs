@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace SecretBlend
 {
-    /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
-    /// </summary>
     public partial class MainPage : Page
     {
         public MainPage()
@@ -29,7 +26,7 @@ namespace SecretBlend
 
         private void EncryptButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Source = new Uri("EncryptChooseWAVPage.xaml", UriKind.Relative);
+            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptChooseWAVPage.xaml", UriKind.Relative);
         }
     }
 }

@@ -44,7 +44,11 @@ namespace SecretBlend
             ButtonAboutMe.Background = inactiveButtonBrush;
             ButtonAboutProject.Background = inactiveButtonBrush;
 
-            FrameContainer.Source = new Uri("MainPage.xaml", UriKind.Relative);
+            FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+
+            ButtonMain.IsEnabled = true;
+            ButtonAboutMe.IsEnabled = true;
+            ButtonAboutProject.IsEnabled = true;
         }
 
         private void ButtonAboutProject_Click(object sender, RoutedEventArgs e)
@@ -53,7 +57,11 @@ namespace SecretBlend
             ButtonAboutMe.Background = inactiveButtonBrush;
             ButtonMain.Background = inactiveButtonBrush;
 
-            FrameContainer.Source = new Uri("AboutProjectPage.xaml", UriKind.Relative);
+            FrameContainer.Source = new Uri("/Pages/MainWindowPages/AboutProjectPage.xaml", UriKind.Relative);
+
+            ButtonMain.IsEnabled = true;
+            ButtonAboutMe.IsEnabled = true;
+            ButtonAboutProject.IsEnabled = true;
         }
 
         private void ButtonAboutMe_Click(object sender, RoutedEventArgs e)
@@ -62,7 +70,16 @@ namespace SecretBlend
             ButtonMain.Background = inactiveButtonBrush;
             ButtonAboutProject.Background = inactiveButtonBrush;
 
-            FrameContainer.Source = new Uri("AboutMePage.xaml", UriKind.Relative);
+            FrameContainer.Source = new Uri("Pages/MainWindowPages/AboutMePage.xaml", UriKind.Relative);
+
+            ButtonMain.IsEnabled = true;
+            ButtonAboutMe.IsEnabled = true;
+            ButtonAboutProject.IsEnabled = true;
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }
