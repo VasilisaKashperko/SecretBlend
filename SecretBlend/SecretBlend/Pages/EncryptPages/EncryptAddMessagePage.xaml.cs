@@ -56,7 +56,7 @@ namespace SecretBlend
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptProcessPage.xaml", UriKind.Relative);
         }
 
         private void TXTDropPanel_Drop(object sender, DragEventArgs e)

@@ -25,8 +25,8 @@
 
             <Border x:Name="BorderDragNDrop" CornerRadius="40" Margin="96,260,96,145" Background="#3F000000">
                 <StackPanel Background="Transparent" Name="TXTDropPanel" AllowDrop="true" Drop="TXTDropPanel_Drop">
-                    <Label Content="Перетащите TXT-файл сюда" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="29" Width="704" FontSize="18" Margin="0 8 0 0"/>
-                    <Label Content="или" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="37" Width="704" FontSize="18" Margin="0 0 0 0"/>
+                    <Label Content="Перетащите TXT-файл сюда" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="34" Width="704" FontSize="18" Margin="0 8 0 0"/>
+                    <Label Content="или" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="33" Width="704" FontSize="18" Margin="0 0 0 0"/>
                     <Button x:Name="ChooseFileButton" Content="Выберите файл" HorizontalAlignment="Center" Height="55" Width="218" FontSize="20" Margin="0 4 0 0" Click="ChooseFileButton_Click">
                         <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
                     </Button>
