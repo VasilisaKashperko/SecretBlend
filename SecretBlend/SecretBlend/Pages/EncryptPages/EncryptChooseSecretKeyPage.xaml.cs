@@ -15,24 +15,28 @@ using System.Windows.Shapes;
 
 namespace SecretBlend
 {
-    /// <summary>
-    /// Логика взаимодействия для EncryptChooseSecretKeyPage.xaml
-    /// </summary>
     public partial class EncryptChooseSecretKeyPage : Page
     {
         public EncryptChooseSecretKeyPage()
         {
             InitializeComponent();
+
+            if(GlobalClass.secretKey.ToString() != string.Empty)
+            {
+                PasswordBox.Password = GlobalClass.secretKey;
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            GlobalClass.secretKey = PasswordBox.Password.Trim().ToString();
             this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptChooseWAVPage.xaml", UriKind.Relative);
         }
 
-        private void PasswordView_Click(object sender, RoutedEventArgs e)
+        private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-
+            GlobalClass.secretKey = PasswordBox.Password.Trim().ToString();
+            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptAddMessagePage.xaml", UriKind.Relative);
         }
     }
 }

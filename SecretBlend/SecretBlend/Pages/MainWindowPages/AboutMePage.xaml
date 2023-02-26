@@ -28,9 +28,9 @@
         </Grid>
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,448,0,88" Width="804">
-            <Image x:Name="TelegramLink" Source="/Assets/telegram.png" Height="56" Width="56" Margin="244 0 0 0" ToolTip="Telegram" MouseDown="TelegramLink_MouseDown"/>
-            <Image x:Name="InstagramLink" Source="/Assets/instagram.png" Height="56" Width="56" Margin="76 0 0 0" ToolTip="Instagram" MouseDown="InstagramLink_MouseDown" />
-            <Image x:Name="VKLink" Source="/Assets/vk.png" Height="56" Width="56" Margin="76 0 0 0" ToolTip="ВКонтакте" MouseDown="VKLink_MouseDown"/>
+            <Image x:Name="TelegramLink" Source="/Assets/telegram.png" Height="56" Width="56" Margin="244 0 0 0" ToolTip="Telegram" MouseDown="TelegramLink_MouseDown" Cursor="Hand"/>
+            <Image x:Name="InstagramLink" Source="/Assets/instagram.png" Height="56" Width="56" Margin="76 0 0 0" ToolTip="Instagram" MouseDown="InstagramLink_MouseDown" Cursor="Hand" />
+            <Image x:Name="VKLink" Source="/Assets/vk.png" Height="56" Width="56" Margin="76 0 0 0" ToolTip="ВКонтакте" MouseDown="VKLink_MouseDown" Cursor="Hand"/>
         </StackPanel>
     </Grid>
 </Page>

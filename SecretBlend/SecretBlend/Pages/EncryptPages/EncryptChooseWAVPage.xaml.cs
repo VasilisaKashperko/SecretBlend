@@ -22,11 +22,13 @@ namespace SecretBlend
         {
             InitializeComponent();
 
-            if(GlobalClass.file.ToString() != "")
+            if(GlobalClass.WAVfile.ToString() != string.Empty)
             {
                 YouChooseLabel.Content = "Вы выбрали файл:";
-                PathLabel.Content = GlobalClass.file;
+                PathLabel.Content = GlobalClass.WAVfile;
             }
+
+            GlobalClass.isEncrypt = true;
         }
 
         private void WAVDropPanel_Drop(object sender, DragEventArgs e)
@@ -35,10 +37,10 @@ namespace SecretBlend
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                GlobalClass.file = files[files.Length-1];
+                GlobalClass.WAVfile = files[files.Length-1];
 
                 YouChooseLabel.Content = "Вы выбрали файл:";
-                PathLabel.Content = GlobalClass.file;
+                PathLabel.Content = GlobalClass.WAVfile;
             }
         }
 
@@ -51,15 +53,34 @@ namespace SecretBlend
             openFileDialog.Filter = "WAV-файл|*.wav;";
             openFileDialog.ShowDialog();
 
-            GlobalClass.file = openFileDialog.FileName;
+            GlobalClass.WAVfile = openFileDialog.FileName;
 
             YouChooseLabel.Content = "Вы выбрали файл:";
-            PathLabel.Content = GlobalClass.file;
+            PathLabel.Content = GlobalClass.WAVfile;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+            if (GlobalClass.isEncrypt)
+            {
+                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс шифрования?", "Переход на главную страницу", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (choice)
+                {
+                    case MessageBoxResult.Yes:
+                        this.NavigationService.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+                        GlobalClass.isEncrypt = false;
+                        GlobalClass.WAVfile = "";
+                        GlobalClass.secretKey = "";
+                        GlobalClass.TXTFile = "";
+                        GlobalClass.TXTMessage = "";
+
+                        break;
+
+                    case MessageBoxResult.No:
+
+                        break;
+                }
+            }
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)

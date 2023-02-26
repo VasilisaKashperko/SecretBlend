@@ -8,7 +8,12 @@ namespace SecretBlend
 {
     public static class GlobalClass
     {
-        public static string file = "";
+        public static bool isEncrypt = false;
+        public static bool isRadioButtonChanged = false;
+
+        public static string WAVfile = "";
         public static string secretKey = "";
+        public static string TXTFile = "";
+        public static string TXTMessage = "";
     }
 }

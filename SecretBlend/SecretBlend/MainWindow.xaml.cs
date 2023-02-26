@@ -25,6 +25,17 @@ namespace SecretBlend
         public MainWindow()
         {
             InitializeComponent();
+
+            if (GlobalClass.isEncrypt == true)
+            {
+                ButtonAboutProject.IsEnabled = false;
+                ButtonAboutMe.IsEnabled = false;
+            }
+            if (GlobalClass.isEncrypt == false)
+            {
+                ButtonAboutProject.IsEnabled = true;
+                ButtonAboutMe.IsEnabled = true;
+            }
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
@@ -44,11 +55,30 @@ namespace SecretBlend
             ButtonAboutMe.Background = inactiveButtonBrush;
             ButtonAboutProject.Background = inactiveButtonBrush;
 
-            FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+            if (GlobalClass.isEncrypt)
+            {
+                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс шифрования?", "Переход на главную страницу", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (choice)
+                {
+                    case MessageBoxResult.Yes:
+                        FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+                        GlobalClass.isEncrypt = false;
+                        GlobalClass.WAVfile = "";
+                        GlobalClass.secretKey = "";
+                        GlobalClass.TXTFile = "";
+                        GlobalClass.TXTMessage = "";
 
-            ButtonMain.IsEnabled = true;
-            ButtonAboutMe.IsEnabled = true;
-            ButtonAboutProject.IsEnabled = true;
+                        break;
+
+                    case MessageBoxResult.No:
+
+                        break;
+                }
+            }
+            if (!GlobalClass.isEncrypt)
+            {
+                FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+            }
         }
 
         private void ButtonAboutProject_Click(object sender, RoutedEventArgs e)
@@ -80,6 +110,20 @@ namespace SecretBlend
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (GlobalClass.isEncrypt)
+            {
+                ButtonAboutProject.IsEnabled = false;
+                ButtonAboutMe.IsEnabled = false;
+            }
+            if (!GlobalClass.isEncrypt)
+            {
+                ButtonAboutProject.IsEnabled = true;
+                ButtonAboutMe.IsEnabled = true;
+            }
         }
     }
 }
