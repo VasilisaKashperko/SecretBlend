@@ -90,6 +90,7 @@ namespace SecretBlend
         private void RadioButtonText_Click(object sender, RoutedEventArgs e)
         {
             GlobalClass.isRadioButtonChanged = false;
+            GlobalClass.whatRadioButton = false;
 
             LableMessage.IsEnabled = true;
             TextBoxMessage.IsEnabled = true;
@@ -100,6 +101,7 @@ namespace SecretBlend
         private void RadioButtonFile_Click(object sender, RoutedEventArgs e)
         {
             GlobalClass.isRadioButtonChanged = true;
+            GlobalClass.whatRadioButton = true;
 
             LableMessage.IsEnabled = false;
             TextBoxMessage.IsEnabled = false;

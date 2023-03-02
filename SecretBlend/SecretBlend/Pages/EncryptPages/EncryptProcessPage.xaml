@@ -13,23 +13,30 @@
     <Grid>
         <Rectangle RadiusX="40" RadiusY="40"  Margin="48,64,48,48" Fill="#66000000"/>
         <Label HorizontalContentAlignment="Center" Content="Зашифрование" HorizontalAlignment="Center" Margin="0,101,0,472" FontSize="36" FontFamily="GOST type A" FontWeight="Bold" Width="804" />
-        
+
         <Grid>
             <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Выбранный WAV-файл:" HorizontalAlignment="Left" Margin="114,158,0,0" VerticalAlignment="Top" Height="45" Width="200" FontSize="18"/>
             <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Секретный ключ: " HorizontalAlignment="Left" Margin="114,203,0,0" VerticalAlignment="Top" Height="45" Width="151" FontSize="18"/>
             <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Сообщение для зашифровки: " HorizontalAlignment="Left" Margin="114,248,0,0" VerticalAlignment="Top" Height="45" Width="256" FontSize="18"/>
-            
-            <Button x:Name="ChooseFileButton" Content="Зашифровать" HorizontalAlignment="Center" Height="55" Width="218" FontSize="20" Margin="0,312,0,257">
+
+            <Button x:Name="ChooseFileButton" Content="Зашифровать" HorizontalAlignment="Center" Height="55" Width="218" FontSize="20" Margin="0,312,0,257" Click="ChooseFileButton_Click">
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
             </Button>
-            
+
             <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Секретный ключ: " HorizontalAlignment="Left" Margin="114,203,0,0" VerticalAlignment="Top" Height="45" Width="151" FontSize="18"/>
-            
+
             <Label x:Name="LabelNameWAV" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="319,158,0,0" VerticalAlignment="Top" Height="45" Width="481" FontSize="18"/>
-            <Label x:Name="LabelSecretKey" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="270,203,0,0" VerticalAlignment="Top" Height="45" Width="530" FontSize="18"/>
+            <!--<Label x:Name="LabelSecretKey" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="270,203,0,0" VerticalAlignment="Top" Height="45" Width="530" FontSize="18"/>-->
+
+            <PasswordBox x:Name="PasswordBox" Width="520" Height="auto" HorizontalContentAlignment="Center" FontSize="18" Foreground="#FFFFC83D" HorizontalAlignment="Left" Margin="280,203,0,382" MaxLength="55">
+            </PasswordBox>
+
             <Label x:Name="LabelMessage" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="370,248,0,0" VerticalAlignment="Top" Height="45" Width="430" FontSize="18"/>
+
+            <ProgressBar Minimum="0" Maximum="100" x:Name="EncryptProgressBar" Margin="150,401,150,208" Width="600" Height="16"/>
+            <Label x:Name="ReadyLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="" HorizontalAlignment="Center" Margin="0,422,0,0" VerticalAlignment="Top" Height="45" Width="256" FontSize="18"/>
         </Grid>
-        
+
         <StackPanel Orientation="Horizontal" Margin="0,476,0,48" HorizontalAlignment="Center">
             <Button x:Name="BackButton" Content="Назад" Height="55" Width="120" FontSize="20" Margin="0 0 152 0" Click="BackButton_Click">
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
