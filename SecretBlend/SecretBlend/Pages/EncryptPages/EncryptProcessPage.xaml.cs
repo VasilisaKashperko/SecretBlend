@@ -128,5 +128,10 @@ namespace SecretBlend
 
             }
         }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptSuccessPage.xaml", UriKind.Relative);
+        }
     }
 }

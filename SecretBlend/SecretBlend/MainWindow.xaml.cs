@@ -63,10 +63,13 @@ namespace SecretBlend
                     case MessageBoxResult.Yes:
                         FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
                         GlobalClass.isEncrypt = false;
+                        GlobalClass.isRadioButtonChanged = false;
+                        GlobalClass.whatRadioButton = false;
                         GlobalClass.WAVfile = "";
                         GlobalClass.secretKey = "";
                         GlobalClass.TXTFile = "";
                         GlobalClass.TXTMessage = "";
+                        GlobalClass.EncryptedWAVFile = "";
 
                         break;
 
