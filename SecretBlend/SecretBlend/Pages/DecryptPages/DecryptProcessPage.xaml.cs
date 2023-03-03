@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,9 +16,9 @@ using System.Windows.Shapes;
 
 namespace SecretBlend
 {
-    public partial class EncryptProcessPage : Page
+    public partial class DecryptProcessPage : Page
     {
-        public EncryptProcessPage()
+        public DecryptProcessPage()
         {
             InitializeComponent();
 
@@ -47,56 +45,12 @@ namespace SecretBlend
             PasswordBox.Password = GlobalClass.secretKey;
             PasswordBox.IsEnabled = false;
 
-            if (!GlobalClass.whatRadioButton)
-            {
-
-                if (GlobalClass.TXTMessage.Length > 42)
-                {
-                    string briefPATH = "";
-
-                    foreach (char chars in GlobalClass.TXTMessage)
-                    {
-                        briefPATH += chars;
-                    }
-
-                    string cropedResult = briefPATH.Substring(0, 41) + "...";
-
-                    LabelMessage.Content = cropedResult;
-                }
-                else
-                {
-                    LabelMessage.Content = GlobalClass.TXTMessage;
-                }
-            }
-
-            if (GlobalClass.whatRadioButton)
-            {
-
-                if (GlobalClass.TXTFile.Length > 45)
-                {
-                    string briefPATH = "";
-
-                    foreach (char chars in GlobalClass.TXTFile)
-                    {
-                        briefPATH += chars;
-                    }
-
-                    string cropedResult = briefPATH.Substring(0, 44) + "...";
-
-                    LabelMessage.Content = cropedResult;
-                }
-                else
-                {
-                    LabelMessage.Content = GlobalClass.TXTFile;
-                }
-            }
-
             EncryptProgressBar.Visibility = Visibility.Hidden;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptAddMessagePage.xaml", UriKind.Relative);
+            this.NavigationService.Source = new Uri("/Pages/DecryptPages/DecryptWayToExtractPage.xaml", UriKind.Relative);
         }
 
         private void ChooseFileButton_Click(object sender, RoutedEventArgs e)
@@ -108,17 +62,14 @@ namespace SecretBlend
                 if (!GlobalClass.whatRadioButton)
                 {
                     EncryptProgressBar.IsIndeterminate = true;
-                    Algorithm.Hide(GlobalClass.WAVfile, GlobalClass.secretKey, GlobalClass.TXTMessage);
+                    Algorithm.Extract(GlobalClass.WAVfile, GlobalClass.secretKey);
                     EncryptProgressBar.IsIndeterminate = false;
                 }
 
                 if (GlobalClass.whatRadioButton)
                 {
                     EncryptProgressBar.IsIndeterminate = true;
-
-                    string txtFile = File.ReadAllText(GlobalClass.TXTFile);
-
-                    Algorithm.Hide(GlobalClass.WAVfile, GlobalClass.secretKey, txtFile);
+                    Algorithm.Extract(GlobalClass.WAVfile, GlobalClass.secretKey);
                     EncryptProgressBar.IsIndeterminate = false;
                 }
 
@@ -129,15 +80,12 @@ namespace SecretBlend
                 NextButton.IsEnabled = true;
                 BackButton.IsEnabled = false;
             }
-            catch
-            {
-
-            }
+            catch {}
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptSuccessPage.xaml", UriKind.Relative);
+            this.NavigationService.Source = new Uri("/Pages/DecryptPages/DecryptSuccessPage.xaml", UriKind.Relative);
         }
     }
 }

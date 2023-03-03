@@ -31,10 +31,15 @@ namespace SecretBlend
                 ButtonAboutProject.IsEnabled = false;
                 ButtonAboutMe.IsEnabled = false;
             }
-            if (GlobalClass.isEncrypt == false)
+            if (!GlobalClass.isEncrypt && !GlobalClass.isDecrypt)
             {
                 ButtonAboutProject.IsEnabled = true;
                 ButtonAboutMe.IsEnabled = true;
+            }
+            if (GlobalClass.isDecrypt == true)
+            {
+                ButtonAboutProject.IsEnabled = false;
+                ButtonAboutMe.IsEnabled = false;
             }
         }
 
@@ -78,7 +83,31 @@ namespace SecretBlend
                         break;
                 }
             }
-            if (!GlobalClass.isEncrypt)
+
+            if (GlobalClass.isDecrypt)
+            {
+                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс шифрования?", "Переход на главную страницу", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (choice)
+                {
+                    case MessageBoxResult.Yes:
+                        FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
+                        GlobalClass.isDecrypt = false;
+                        GlobalClass.isRadioButtonChanged = false;
+                        GlobalClass.whatRadioButton = false;
+                        GlobalClass.WAVfile = "";
+                        GlobalClass.secretKey = "";
+                        GlobalClass.ExtractFileResult = "";
+                        GlobalClass.ExtractResult = "";
+
+                        break;
+
+                    case MessageBoxResult.No:
+
+                        break;
+                }
+            }
+
+            if (!GlobalClass.isEncrypt && !GlobalClass.isDecrypt)
             {
                 FrameContainer.Source = new Uri("/Pages/MainWindowPages/MainPage.xaml", UriKind.Relative);
             }
@@ -123,6 +152,16 @@ namespace SecretBlend
                 ButtonAboutMe.IsEnabled = false;
             }
             if (!GlobalClass.isEncrypt)
+            {
+                ButtonAboutProject.IsEnabled = true;
+                ButtonAboutMe.IsEnabled = true;
+            }
+            if (GlobalClass.isDecrypt)
+            {
+                ButtonAboutProject.IsEnabled = false;
+                ButtonAboutMe.IsEnabled = false;
+            }
+            if (!GlobalClass.isDecrypt)
             {
                 ButtonAboutProject.IsEnabled = true;
                 ButtonAboutMe.IsEnabled = true;

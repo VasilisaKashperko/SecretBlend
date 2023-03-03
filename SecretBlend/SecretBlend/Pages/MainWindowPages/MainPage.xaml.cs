@@ -28,5 +28,10 @@ namespace SecretBlend
         {
             this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptChooseWAVPage.xaml", UriKind.Relative);
         }
+
+        private void DecryptButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Source = new Uri("/Pages/DecryptPages/DecryptChooseWAVPage.xaml", UriKind.Relative);
+        }
     }
 }
