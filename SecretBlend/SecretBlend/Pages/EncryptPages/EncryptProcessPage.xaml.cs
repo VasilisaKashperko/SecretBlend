@@ -25,7 +25,7 @@ namespace SecretBlend
 
             NextButton.IsEnabled = false;
 
-            if (GlobalClass.WAVfile.Length > 45)
+            if (GlobalClass.WAVfile.Length > 50)
             {
                 string briefPATH = "";
 
@@ -34,7 +34,7 @@ namespace SecretBlend
                     briefPATH += chars;
                 }
 
-                string cropedResult = briefPATH.Substring(0, 44) + "...";
+                string cropedResult = briefPATH.Substring(0, 49) + "...";
 
                 LabelNameWAV.Content = cropedResult;
             }
@@ -49,7 +49,7 @@ namespace SecretBlend
             if (!GlobalClass.whatRadioButton)
             {
 
-                if (GlobalClass.TXTMessage.Length > 45)
+                if (GlobalClass.TXTMessage.Length > 42)
                 {
                     string briefPATH = "";
 
@@ -58,7 +58,7 @@ namespace SecretBlend
                         briefPATH += chars;
                     }
 
-                    string cropedResult = briefPATH.Substring(0, 44) + "...";
+                    string cropedResult = briefPATH.Substring(0, 41) + "...";
 
                     LabelMessage.Content = cropedResult;
                 }

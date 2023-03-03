@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Media;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,9 +20,20 @@ namespace SecretBlend
 {
     public partial class EncryptSuccessPage : Page
     {
+        public SoundPlayer wavBeforePlayer = new SoundPlayer();
+        public SoundPlayer wavAfterPlayer = new SoundPlayer();
+
         public EncryptSuccessPage()
         {
             InitializeComponent();
+
+            FileInfo wavBefore = new FileInfo(GlobalClass.WAVfile);
+            BeforeLabel.Content = wavBefore.Name;
+            SizeBeforeLabel.Content = wavBefore.Length + " байт";
+
+            FileInfo wavAfter = new FileInfo(GlobalClass.EncryptedWAVFile);
+            AfterLable.Content = wavAfter.Name;
+            SizeAfterLabel.Content = wavAfter.Length + " байт";
         }
 
         private void FinishButton_Click(object sender, RoutedEventArgs e)
@@ -33,6 +47,30 @@ namespace SecretBlend
             GlobalClass.TXTFile = "";
             GlobalClass.TXTMessage = "";
             GlobalClass.EncryptedWAVFile = "";
+        }
+
+        private void PlayBeforeButton_Click(object sender, RoutedEventArgs e)
+        {
+            wavBeforePlayer.SoundLocation = GlobalClass.WAVfile;
+            wavBeforePlayer.LoadAsync();
+            wavBeforePlayer.Play();
+        }
+
+        private void PlayAfterButton_Click(object sender, RoutedEventArgs e)
+        {
+            wavAfterPlayer.SoundLocation = GlobalClass.EncryptedWAVFile;
+            wavBeforePlayer.LoadAsync();
+            wavAfterPlayer.Play();
+        }
+
+        private void PauseBeforeButton_Click(object sender, RoutedEventArgs e)
+        {
+            wavBeforePlayer.Stop();
+        }
+
+        private void PauseAfterButton_Click(object sender, RoutedEventArgs e)
+        {
+            wavAfterPlayer.Stop();
         }
     }
 }

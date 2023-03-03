@@ -21,15 +21,18 @@ namespace SecretBlend
         public EncryptAddMessagePage()
         {
             InitializeComponent();
+            NextButton.IsEnabled = false;
 
             if (GlobalClass.TXTFile.ToString() != string.Empty)
             {
                 PathLabel.Content = GlobalClass.TXTFile;
+                NextButton.IsEnabled = true;
             }
 
             if (GlobalClass.TXTMessage.ToString() != string.Empty)
             {
                 TextBoxMessage.Text = GlobalClass.TXTMessage;
+                NextButton.IsEnabled = true;
             }
 
             if (!GlobalClass.isRadioButtonChanged)
@@ -69,6 +72,8 @@ namespace SecretBlend
 
                 YouChooseLabel.Content = "Вы выбрали файл:";
                 PathLabel.Content = GlobalClass.TXTFile;
+
+                NextButton.IsEnabled = true;
             }
         }
 
@@ -85,6 +90,8 @@ namespace SecretBlend
 
             YouChooseLabel.Content = "Вы выбрали файл:";
             PathLabel.Content = GlobalClass.TXTFile;
+
+            NextButton.IsEnabled = true;
         }
 
         private void RadioButtonText_Click(object sender, RoutedEventArgs e)
@@ -96,6 +103,11 @@ namespace SecretBlend
             TextBoxMessage.IsEnabled = true;
 
             TXTDropPanel.IsEnabled = false;
+
+            if (GlobalClass.TXTMessage != string.Empty)
+            {
+                NextButton.IsEnabled = true;
+            }
         }
 
         private void RadioButtonFile_Click(object sender, RoutedEventArgs e)
@@ -107,11 +119,43 @@ namespace SecretBlend
             TextBoxMessage.IsEnabled = false;
 
             TXTDropPanel.IsEnabled = true;
+
+            if (GlobalClass.TXTFile != string.Empty)
+            {
+                NextButton.IsEnabled = true;
+            }
         }
 
         private void TextBoxMessage_TextChanged(object sender, TextChangedEventArgs e)
         {
-            GlobalClass.TXTMessage = TextBoxMessage.Text;
+            if (TextBoxMessage.Text.Length > 2)
+            {
+                GlobalClass.TXTMessage = TextBoxMessage.Text;
+                NextButton.IsEnabled = true;
+            }
+            if (TextBoxMessage.Text.Length < 2)
+            {
+                GlobalClass.TXTMessage = "";
+                NextButton.IsEnabled = false;
+            }
+        }
+
+        private void Page_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!GlobalClass.whatRadioButton)
+            {
+                if (GlobalClass.TXTMessage == string.Empty)
+                {
+                    NextButton.IsEnabled = false;
+                }
+            }
+            if (GlobalClass.whatRadioButton)
+            {
+                if (GlobalClass.TXTFile == string.Empty)
+                {
+                    NextButton.IsEnabled = false;
+                }
+            }
         }
     }
 }

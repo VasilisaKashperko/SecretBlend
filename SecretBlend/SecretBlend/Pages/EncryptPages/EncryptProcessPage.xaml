@@ -31,7 +31,7 @@
 
             <Label x:Name="LabelMessage" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="370,248,0,0" VerticalAlignment="Top" Height="45" Width="430" FontSize="18"/>
 
-            <ProgressBar Minimum="0" Maximum="100" x:Name="EncryptProgressBar" Margin="150,401,150,208" Width="600" Height="16"/>
+            <ProgressBar Minimum="0" Maximum="100" x:Name="EncryptProgressBar" Margin="150,401,150,208" Width="600" Height="16" Foreground="#FFDD2FD5"/>
             <Label x:Name="ReadyLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="" HorizontalAlignment="Center" Margin="0,422,0,0" VerticalAlignment="Top" Height="45" Width="256" FontSize="18"/>
         </Grid>
 

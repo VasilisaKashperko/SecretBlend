@@ -22,10 +22,13 @@ namespace SecretBlend
         {
             InitializeComponent();
 
+            NextButton.IsEnabled = false;
+
             if(GlobalClass.WAVfile.ToString() != string.Empty)
             {
                 YouChooseLabel.Content = "Вы выбрали файл:";
                 PathLabel.Content = GlobalClass.WAVfile;
+                NextButton.IsEnabled = true;
             }
 
             GlobalClass.isEncrypt = true;
@@ -41,6 +44,8 @@ namespace SecretBlend
 
                 YouChooseLabel.Content = "Вы выбрали файл:";
                 PathLabel.Content = GlobalClass.WAVfile;
+
+                NextButton.IsEnabled = true;
             }
         }
 
@@ -57,6 +62,8 @@ namespace SecretBlend
 
             YouChooseLabel.Content = "Вы выбрали файл:";
             PathLabel.Content = GlobalClass.WAVfile;
+
+            NextButton.IsEnabled = true;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -88,7 +95,22 @@ namespace SecretBlend
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptChooseSecretKeyPage.xaml", UriKind.Relative);
+            if (GlobalClass.WAVfile.ToString() == string.Empty)
+            {
+                NextButton.IsEnabled = false;
+            }
+            else
+            {
+                this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptChooseSecretKeyPage.xaml", UriKind.Relative);
+            }
+        }
+
+        private void Page_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (GlobalClass.WAVfile.ToString() == string.Empty)
+            {
+                NextButton.IsEnabled = false;
+            }
         }
     }
 }
