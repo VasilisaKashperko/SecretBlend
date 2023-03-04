@@ -139,7 +139,7 @@ namespace SecretBlend
                     int o = 0;
                     for (var j = 0; j < bit_string.Length; j += 8)
                     {
-                        if(o == 3)
+                        if (o == 3)
                         {
                             break;
                         }
@@ -156,12 +156,15 @@ namespace SecretBlend
                         }
                     }
 
-                    if(n == 0)
+                    if (n == 0)
                     {
                         throw new ArgumentException();
                     }
                     else
                     {
+                        //byte[] byteResult = Encoding.UTF8.GetBytes(decoded);
+                        //string result = Encoding.UTF8.GetString(byteResult);
+
                         string result = decoded;
 
                         // формирование названия нового файла
@@ -170,7 +173,7 @@ namespace SecretBlend
                         // запись пути сохранения нового аудиофайла в глобальную переменную
                         GlobalClass.ExtractFileResult = outputFile;
 
-                        using (var stream = new StreamWriter(outputFile, false))
+                        using (var stream = new StreamWriter(outputFile, false, Encoding.UTF8))
                         {
                             stream.Write(result, 0, result);
                         }

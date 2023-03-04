@@ -34,7 +34,7 @@ namespace SecretBlend
                 TextLabel.Visibility = Visibility.Visible;
                 TextBlock.Visibility = Visibility.Visible;
 
-                string txtFile = File.ReadAllText(GlobalClass.ExtractFileResult);
+                string txtFile = File.ReadAllText(GlobalClass.ExtractFileResult, Encoding.UTF8);
 
                 GlobalClass.ExtractResult = txtFile;
 
