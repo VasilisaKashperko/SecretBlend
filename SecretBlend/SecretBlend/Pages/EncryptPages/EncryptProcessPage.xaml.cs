@@ -116,7 +116,7 @@ namespace SecretBlend
                 {
                     EncryptProgressBar.IsIndeterminate = true;
 
-                    string txtFile = File.ReadAllText(GlobalClass.TXTFile);
+                    string txtFile = File.ReadAllText(GlobalClass.TXTFile, Encoding.UTF8);
 
                     Algorithm.Hide(GlobalClass.WAVfile, GlobalClass.secretKey, txtFile);
                     EncryptProgressBar.IsIndeterminate = false;

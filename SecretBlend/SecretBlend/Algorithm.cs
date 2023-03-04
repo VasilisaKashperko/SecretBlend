@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
 using System.Windows.Shapes;
+using System.Collections;
 
 namespace SecretBlend
 {
@@ -37,13 +38,13 @@ namespace SecretBlend
 
                     // КОНВЕРТИРОВАНИЕ СООБЩЕНИЯ В БИТОВЫЙ МАССИВ
                     // конкатенация каждого символа сообщения как двоичной строки, заполненную 0 слева, чтобы получилось 8 цифр
-                    var bits_string = string.Concat(message.Select(c => Convert.ToString(c, 2).PadLeft(8, '0')));
+                    var bits_string = string.Concat(Encoding.UTF8.GetBytes(message).Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
                     // преобразование каждого символа двоичной строки в целое число и создание списка целых чисел
                     var bits = bits_string.Select(c => Convert.ToInt32(c.ToString())).ToList();
 
                     // КОНВЕРТИРОВАНИЕ КЛЮЧА В БИТОВЫЙ МАССИВ
                     // конкатенация каждого символа сообщения как двоичной строки, заполненную 0 слева, чтобы получилось 8 цифр
-                    var bits_string_key_word = string.Concat(keyword.Select(c => Convert.ToString(c, 2).PadLeft(8, '0')));
+                    var bits_string_key_word = string.Concat(Encoding.UTF8.GetBytes(keyword).Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
                     // преобразование каждого символа двоичной строки в целое число и создание списка целых чисел
                     var bits_key_word = bits_string_key_word.Select(c => Convert.ToInt32(c.ToString())).ToList();
 
@@ -115,13 +116,17 @@ namespace SecretBlend
 
                     // КОНВЕРТИРОВАНИЕ КЛЮЧА В БИТОВЫЙ МАССИВ
                     // конкатенация каждого символа сообщения как двоичной строки, заполненную 0 слева, чтобы получилось 8 цифр
-                    var bits_string_key_word = string.Concat(keyword.Select(c => Convert.ToString(c, 2).PadLeft(8, '0')));
+
+                    var bits_string_key_word = string.Concat(Encoding.UTF8.GetBytes(keyword).Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
                     // преобразование каждого символа двоичной строки в целое число и создание списка целых чисел
                     var bits_key_word = bits_string_key_word.Select(c => Convert.ToInt32(c.ToString())).ToList();
 
                     var extracted = new List<int>();
                     var n = 0;
                     var i = 0;
+                    var o = 0;
+
+                    var bitstring = "";
                     while (true)
                     {
                         if (n > bits_key_word.Count - 1)
@@ -132,27 +137,22 @@ namespace SecretBlend
                         extracted.Add(frame_bytes[i] & 1);
                         i++;
                         n++;
-                    }
 
-                    var bit_string = string.Concat(extracted.Select(bit => bit.ToString()));
-                    var decoded = "";
-                    int o = 0;
-                    for (var j = 0; j < bit_string.Length; j += 8)
-                    {
-                        if (o == 3)
+                        if (extracted.Count == 8)
                         {
-                            break;
-                        }
-                        var bits = bit_string.Substring(j, 8);
-                        var letter_number = Convert.ToInt32(bits, 2);
-                        var letter = ((char)letter_number).ToString();
-                        if (letter == "#")
-                        {
-                            o++;
-                        }
-                        else
-                        {
-                            decoded += letter;
+                            string bits_string = $"{extracted[0]}{extracted[1]}{extracted[2]}{extracted[3]}{extracted[4]}{extracted[5]}{extracted[6]}{extracted[7]}";
+                            bitstring += bits_string;
+
+                            if (bits_string.Equals("00100011"))
+                            {
+                                o++;
+                                if (o == 3) break;
+                            }
+                            else
+                            {
+                                o = 0;
+                            }
+                            extracted.Clear();
                         }
                     }
 
@@ -162,10 +162,11 @@ namespace SecretBlend
                     }
                     else
                     {
-                        //byte[] byteResult = Encoding.UTF8.GetBytes(decoded);
-                        //string result = Encoding.UTF8.GetString(byteResult);
+                        byte[] bytes = Enumerable.Range(0, bitstring.Length / 8).Select(b => Convert.ToByte(bitstring.Substring(b * 8, 8), 2)).ToArray();
 
-                        string result = decoded;
+                        // Encode the byte array as UTF8
+                        string utf8String = Encoding.UTF8.GetString(bytes);
+                        string result = utf8String.TrimEnd('#');
 
                         // формирование названия нового файла
                         string outputFile = hidden_file.Replace(".wav", "_extracted.txt");
