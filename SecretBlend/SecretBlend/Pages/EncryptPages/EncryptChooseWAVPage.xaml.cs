@@ -23,15 +23,14 @@ namespace SecretBlend
             InitializeComponent();
 
             NextButton.IsEnabled = false;
+            GlobalClass.isEncrypt = true;
 
-            if(GlobalClass.WAVfile.ToString() != string.Empty)
+            if (GlobalClass.WAVfile.ToString() != string.Empty)
             {
                 YouChooseLabel.Content = "Вы выбрали файл:";
                 PathLabel.Content = GlobalClass.WAVfile;
                 NextButton.IsEnabled = true;
             }
-
-            GlobalClass.isEncrypt = true;
         }
 
         private void WAVDropPanel_Drop(object sender, DragEventArgs e)
@@ -107,6 +106,7 @@ namespace SecretBlend
 
         private void Page_MouseMove(object sender, MouseEventArgs e)
         {
+            GlobalClass.isEncrypt = true;
             if (GlobalClass.WAVfile.ToString() == string.Empty)
             {
                 NextButton.IsEnabled = false;

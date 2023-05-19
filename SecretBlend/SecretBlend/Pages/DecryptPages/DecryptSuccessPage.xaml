@@ -34,5 +34,7 @@
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
             </Button>
         </StackPanel>
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Затраченное время:" HorizontalAlignment="Left" Margin="105,458,0,0" VerticalAlignment="Top" Height="46" Width="177" FontSize="18"/>
+        <Label x:Name="TimeLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="286,458,0,0" VerticalAlignment="Top" Height="46" Width="320" FontSize="18"/>
     </Grid>
 </Page>

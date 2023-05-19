@@ -27,11 +27,13 @@ namespace SecretBlend
         private void EncryptButton_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Source = new Uri("/Pages/EncryptPages/EncryptChooseWAVPage.xaml", UriKind.Relative);
+            GlobalClass.isEncrypt = true;
         }
 
         private void DecryptButton_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Source = new Uri("/Pages/DecryptPages/DecryptChooseWAVPage.xaml", UriKind.Relative);
+            GlobalClass.isDecrypt = true;
         }
     }
 }

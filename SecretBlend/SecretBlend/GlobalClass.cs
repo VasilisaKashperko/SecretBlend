@@ -13,6 +13,8 @@ namespace SecretBlend
         public static bool isRadioButtonChanged = false;
         public static bool whatRadioButton = false;
 
+        public static string Time = "";
+
         public static string WAVfile = "";
         public static string secretKey = "";
         public static string TXTFile = "";

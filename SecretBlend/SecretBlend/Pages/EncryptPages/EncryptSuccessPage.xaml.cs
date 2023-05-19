@@ -34,6 +34,8 @@ namespace SecretBlend
             FileInfo wavAfter = new FileInfo(GlobalClass.EncryptedWAVFile);
             AfterLable.Content = wavAfter.Name;
             SizeAfterLabel.Content = wavAfter.Length + " байт";
+
+            TimeLabel.Content = GlobalClass.Time + " мс";
         }
 
         private void FinishButton_Click(object sender, RoutedEventArgs e)

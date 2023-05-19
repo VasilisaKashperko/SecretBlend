@@ -51,6 +51,8 @@ namespace SecretBlend
 
                 PathLabel.Content = GlobalClass.ExtractFileResult;
             }
+
+            TimeLabel.Content = GlobalClass.Time + " мс";
         }
 
         private void FinishButton_Click(object sender, RoutedEventArgs e)

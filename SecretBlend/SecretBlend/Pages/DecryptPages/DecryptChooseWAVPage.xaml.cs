@@ -23,6 +23,7 @@ namespace SecretBlend
             InitializeComponent();
 
             NextButton.IsEnabled = false;
+            GlobalClass.isDecrypt = true;
 
             if (GlobalClass.WAVfile.ToString() != string.Empty)
             {
@@ -30,8 +31,6 @@ namespace SecretBlend
                 PathLabel.Content = GlobalClass.WAVfile;
                 NextButton.IsEnabled = true;
             }
-
-            GlobalClass.isDecrypt = true;
         }
 
         private void WAVDropPanel_Drop(object sender, DragEventArgs e)

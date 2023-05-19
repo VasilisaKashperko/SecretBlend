@@ -15,29 +15,32 @@
         <Label HorizontalContentAlignment="Center" Content="Зашифрование прошло успешно!" HorizontalAlignment="Center" Margin="0,101,0,472" FontSize="36" FontFamily="GOST type A" FontWeight="Bold" Width="804" />
 
         <Grid>
-            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="WAV-файл с зашифрованной информацией сохранен рядом с исходным!" HorizontalAlignment="Center" Margin="0,158,0,0" VerticalAlignment="Top" Height="45" Width="622" FontSize="18"/>
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="WAV-файл с зашифрованной информацией сохранен рядом с исходным!" HorizontalAlignment="Center" Margin="0,146,0,0" VerticalAlignment="Top" Height="45" Width="622" FontSize="18"/>
 
-            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Исходный файл:" HorizontalAlignment="Left" Margin="105,208,0,0" VerticalAlignment="Top" Height="46" Width="146" FontSize="18"/>
-            <Label x:Name="BeforeLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="256,208,0,0" VerticalAlignment="Top" Height="46" Width="524" FontSize="18"/>
-            <Button x:Name="PlayBeforeButton" Content="{materialDesign:PackIcon Kind=Play}" Height="44" FontSize="20" Margin="109,254,743,327" Click="PlayBeforeButton_Click">
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Исходный файл:" HorizontalAlignment="Left" Margin="105,188,0,0" VerticalAlignment="Top" Height="46" Width="146" FontSize="18"/>
+            <Label x:Name="BeforeLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="256,188,0,0" VerticalAlignment="Top" Height="46" Width="524" FontSize="18"/>
+            <Button x:Name="PlayBeforeButton" Content="{materialDesign:PackIcon Kind=Play}" Height="44" FontSize="20" Margin="109,234,743,347" Click="PlayBeforeButton_Click">
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
             </Button>
-            <Button x:Name="PauseBeforeButton" Content="{materialDesign:PackIcon Kind=Stop}" Height="44" FontSize="20" Margin="178,254,674,327" Click="PauseBeforeButton_Click">
+            <Button x:Name="PauseBeforeButton" Content="{materialDesign:PackIcon Kind=Stop}" Height="44" FontSize="20" Margin="178,234,674,347" Click="PauseBeforeButton_Click">
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
             </Button>
-            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Размер файла:" HorizontalAlignment="Left" Margin="105,296,0,0" VerticalAlignment="Top" Height="46" Width="129" FontSize="18"/>
-            <Label x:Name="SizeBeforeLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="239,296,0,0" VerticalAlignment="Top" Height="46" Width="320" FontSize="18"/>
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Размер файла:" HorizontalAlignment="Left" Margin="105,276,0,0" VerticalAlignment="Top" Height="46" Width="129" FontSize="18"/>
+            <Label x:Name="SizeBeforeLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="239,276,0,0" VerticalAlignment="Top" Height="46" Width="320" FontSize="18"/>
 
-            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Новый файл:" HorizontalAlignment="Left" Margin="105,360,0,0" VerticalAlignment="Top" Height="46" Width="116" FontSize="18"/>
-            <Label x:Name="AfterLable" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="226,360,0,0" VerticalAlignment="Top" Height="46" Width="554" FontSize="18"/>
-            <Button x:Name="PlayAfterButton" Content="{materialDesign:PackIcon Kind=Play}" Height="44" FontSize="20" Margin="109,408,743,173" Click="PlayAfterButton_Click">
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Новый файл:" HorizontalAlignment="Left" Margin="105,320,0,0" VerticalAlignment="Top" Height="46" Width="116" FontSize="18"/>
+            <Label x:Name="AfterLable" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="226,320,0,0" VerticalAlignment="Top" Height="46" Width="554" FontSize="18"/>
+            <Button x:Name="PlayAfterButton" Content="{materialDesign:PackIcon Kind=Play}" Height="44" FontSize="20" Margin="109,368,743,213" Click="PlayAfterButton_Click">
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
             </Button>
-            <Button x:Name="PauseAfterButton" Content="{materialDesign:PackIcon Kind=Stop}" Height="44" FontSize="20" Margin="178,408,674,173" Click="PauseAfterButton_Click">
+            <Button x:Name="PauseAfterButton" Content="{materialDesign:PackIcon Kind=Stop}" Height="44" FontSize="20" Margin="178,368,674,213" Click="PauseAfterButton_Click">
                 <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
             </Button>
-            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Размер файла:" HorizontalAlignment="Left" Margin="105,452,0,0" VerticalAlignment="Top" Height="46" Width="129" FontSize="18"/>
-            <Label x:Name="SizeAfterLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="239,452,0,0" VerticalAlignment="Top" Height="46" Width="320" FontSize="18"/>
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Размер файла:" HorizontalAlignment="Left" Margin="105,412,0,0" VerticalAlignment="Top" Height="46" Width="129" FontSize="18"/>
+            <Label x:Name="SizeAfterLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="239,412,0,0" VerticalAlignment="Top" Height="46" Width="320" FontSize="18"/>
+            <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="Затраченное время:" HorizontalAlignment="Left" Margin="105,458,0,0" VerticalAlignment="Top" Height="46" Width="177" FontSize="18"/>
+            <Label x:Name="TimeLabel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Left" Margin="286,458,0,0" VerticalAlignment="Top" Height="46" Width="320" FontSize="18"/>
+
         </Grid>
 
         <StackPanel Orientation="Horizontal" Margin="360,476,0,48" HorizontalAlignment="Left" Width="465">

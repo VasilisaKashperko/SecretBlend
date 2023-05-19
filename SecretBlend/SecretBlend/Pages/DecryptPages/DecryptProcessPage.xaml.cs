@@ -80,7 +80,9 @@ namespace SecretBlend
                 NextButton.IsEnabled = true;
                 BackButton.IsEnabled = false;
             }
-            catch {}
+            catch (Exception){
+                Console.WriteLine("fld");
+            }
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)

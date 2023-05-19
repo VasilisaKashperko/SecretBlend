@@ -29,11 +29,11 @@
         <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Используйте секретный ключ для шифрования данных, который будете знать" HorizontalAlignment="Left" Margin="114,239,0,0" VerticalAlignment="Top" Height="31" Width="689" FontSize="18"/>
         <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="только Вы и Ваш получатель, для того, чтобы расшифровать сообщение." HorizontalAlignment="Left" Margin="114,254,0,0" VerticalAlignment="Top" Height="47" Width="689" FontSize="18"/>
 
-        <Button x:Name="EncryptButton" Content="Зашифровать" HorizontalAlignment="Left" Margin="556,367,0,0" VerticalAlignment="Top" Height="55" Width="218" FontSize="20" Click="EncryptButton_Click">
+        <Button x:Name="EncryptButton" Content="Зашифровать" HorizontalAlignment="Left" Margin="556,367,0,0" VerticalAlignment="Top" Height="55" Width="218" FontSize="20" Click="EncryptButton_Click" Background="#FF9670C5" BorderBrush="#FF9670C5">
             <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
         </Button>
 
-        <Button x:Name="DecryptButton" Content="Расшифровать" HorizontalAlignment="Left" Margin="556,471,0,0" VerticalAlignment="Top" Height="55" Width="218" FontSize="20" Click="DecryptButton_Click">
+        <Button x:Name="DecryptButton" Content="Расшифровать" HorizontalAlignment="Left" Margin="556,471,0,0" VerticalAlignment="Top" Height="55" Width="218" FontSize="20" Click="DecryptButton_Click" Background="#FFD088D2" BorderBrush="#FFD088D2">
             <materialDesign:ButtonAssist.CornerRadius>10</materialDesign:ButtonAssist.CornerRadius>
         </Button>
     </Grid>

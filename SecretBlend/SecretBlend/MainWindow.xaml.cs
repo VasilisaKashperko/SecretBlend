@@ -28,17 +28,14 @@ namespace SecretBlend
 
             if (GlobalClass.isEncrypt == true)
             {
-                ButtonAboutProject.IsEnabled = false;
                 ButtonAboutMe.IsEnabled = false;
             }
             if (!GlobalClass.isEncrypt && !GlobalClass.isDecrypt)
             {
-                ButtonAboutProject.IsEnabled = true;
                 ButtonAboutMe.IsEnabled = true;
             }
             if (GlobalClass.isDecrypt == true)
             {
-                ButtonAboutProject.IsEnabled = false;
                 ButtonAboutMe.IsEnabled = false;
             }
         }
@@ -58,7 +55,6 @@ namespace SecretBlend
         {
             ButtonMain.Background = activeButtonBrush;
             ButtonAboutMe.Background = inactiveButtonBrush;
-            ButtonAboutProject.Background = inactiveButtonBrush;
 
             if (GlobalClass.isEncrypt)
             {
@@ -86,7 +82,7 @@ namespace SecretBlend
 
             if (GlobalClass.isDecrypt)
             {
-                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс шифрования?", "Переход на главную страницу", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс расшифрования?", "Переход на главную страницу", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
                 switch (choice)
                 {
                     case MessageBoxResult.Yes:
@@ -113,30 +109,62 @@ namespace SecretBlend
             }
         }
 
-        private void ButtonAboutProject_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonAboutProject.Background = activeButtonBrush;
-            ButtonAboutMe.Background = inactiveButtonBrush;
-            ButtonMain.Background = inactiveButtonBrush;
-
-            FrameContainer.Source = new Uri("/Pages/MainWindowPages/AboutProjectPage.xaml", UriKind.Relative);
-
-            ButtonMain.IsEnabled = true;
-            ButtonAboutMe.IsEnabled = true;
-            ButtonAboutProject.IsEnabled = true;
-        }
-
         private void ButtonAboutMe_Click(object sender, RoutedEventArgs e)
         {
             ButtonAboutMe.Background = activeButtonBrush;
             ButtonMain.Background = inactiveButtonBrush;
-            ButtonAboutProject.Background = inactiveButtonBrush;
 
-            FrameContainer.Source = new Uri("Pages/MainWindowPages/AboutMePage.xaml", UriKind.Relative);
+            if (GlobalClass.isEncrypt)
+            {
+                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс шифрования?", "Переход на страницу об авторе", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (choice)
+                {
+                    case MessageBoxResult.Yes:
+                        FrameContainer.Source = new Uri("Pages/MainWindowPages/AboutMePage.xaml", UriKind.Relative);
+                        GlobalClass.isEncrypt = false;
+                        GlobalClass.isRadioButtonChanged = false;
+                        GlobalClass.whatRadioButton = false;
+                        GlobalClass.WAVfile = "";
+                        GlobalClass.secretKey = "";
+                        GlobalClass.TXTFile = "";
+                        GlobalClass.TXTMessage = "";
+                        GlobalClass.EncryptedWAVFile = "";
 
-            ButtonMain.IsEnabled = true;
-            ButtonAboutMe.IsEnabled = true;
-            ButtonAboutProject.IsEnabled = true;
+                        break;
+
+                    case MessageBoxResult.No:
+
+                        break;
+                }
+            }
+
+            if (GlobalClass.isDecrypt)
+            {
+                MessageBoxResult choice = MessageBox.Show("Вы уверены, что хотите закончить процесс расшифрования?", "Переход на страницу об авторе", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (choice)
+                {
+                    case MessageBoxResult.Yes:
+                        FrameContainer.Source = new Uri("Pages/MainWindowPages/AboutMePage.xaml", UriKind.Relative);
+                        GlobalClass.isDecrypt = false;
+                        GlobalClass.isRadioButtonChanged = false;
+                        GlobalClass.whatRadioButton = false;
+                        GlobalClass.WAVfile = "";
+                        GlobalClass.secretKey = "";
+                        GlobalClass.ExtractFileResult = "";
+                        GlobalClass.ExtractResult = "";
+
+                        break;
+
+                    case MessageBoxResult.No:
+
+                        break;
+                }
+            }
+
+            if (!GlobalClass.isEncrypt && !GlobalClass.isDecrypt)
+            {
+                FrameContainer.Source = new Uri("Pages/MainWindowPages/AboutMePage.xaml", UriKind.Relative);
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -146,25 +174,21 @@ namespace SecretBlend
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            if (GlobalClass.isEncrypt)
-            {
-                ButtonAboutProject.IsEnabled = false;
-                ButtonAboutMe.IsEnabled = false;
-            }
             if (!GlobalClass.isEncrypt)
             {
-                ButtonAboutProject.IsEnabled = true;
                 ButtonAboutMe.IsEnabled = true;
-            }
-            if (GlobalClass.isDecrypt)
-            {
-                ButtonAboutProject.IsEnabled = false;
-                ButtonAboutMe.IsEnabled = false;
             }
             if (!GlobalClass.isDecrypt)
             {
-                ButtonAboutProject.IsEnabled = true;
                 ButtonAboutMe.IsEnabled = true;
+            }
+            if (GlobalClass.isEncrypt)
+            {
+                ButtonAboutMe.IsEnabled = false;
+            }
+            if (GlobalClass.isDecrypt)
+            {
+                ButtonAboutMe.IsEnabled = false;
             }
         }
     }

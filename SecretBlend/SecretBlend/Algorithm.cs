@@ -7,6 +7,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Shapes;
 using System.Collections;
+using System.Threading;
+using System.Diagnostics;
 
 namespace SecretBlend
 {
@@ -19,6 +21,9 @@ namespace SecretBlend
         {
             try
             {
+                Stopwatch time = new Stopwatch();
+                time.Start();
+
                 // ЧТЕНИЕ WAV АУДИОФАЙЛА
                 using (var song = new NAudio.Wave.WaveFileReader(wavfile))
                 {
@@ -49,7 +54,7 @@ namespace SecretBlend
                     var bits_key_word = bits_string_key_word.Select(c => Convert.ToInt32(c.ToString())).ToList();
 
                     // АЛГОРИТМ ЗАШИФРОВАНИЯ
-                    // заменяем биты в байттах аудиофайла на биты сообщения в зависимости от битов ключа
+                    // заменяем биты в байтах аудиофайла на биты сообщения в зависимости от битов ключа
                     int n = 0, i = 0, j = 0;
                     while (true)
                     {
@@ -89,6 +94,9 @@ namespace SecretBlend
                         writer.Write(frame_modified, 0, frame_modified.Length);
                     }
                 }
+
+                time.Stop();
+                GlobalClass.Time = time.ElapsedMilliseconds.ToString();
             }
             catch (IOException)
             {
@@ -106,6 +114,9 @@ namespace SecretBlend
         {
             try
             {
+                Stopwatch time = new Stopwatch();
+                time.Start();
+
                 // ЧТЕНИЕ WAV АУДИОФАЙЛА
                 using (var song = new NAudio.Wave.WaveFileReader(hidden_file))
                 {
@@ -127,6 +138,10 @@ namespace SecretBlend
                     var o = 0;
 
                     var bitstring = "";
+
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+
                     while (true)
                     {
                         if (n > bits_key_word.Count - 1)
@@ -154,42 +169,66 @@ namespace SecretBlend
                             }
                             extracted.Clear();
                         }
+
+                        if (stopwatch.Elapsed.TotalSeconds >= 10)
+                        {
+                            stopwatch.Stop();
+                            break;
+                        }
                     }
 
-                    if (n == 0)
+                    if (stopwatch.IsRunning)
                     {
-                        throw new ArgumentException();
+                        stopwatch.Stop();
+                    }
+
+                    // если ключ неправильный или не найдено "###"
+
+                    byte[] bytes = Enumerable.Range(0, bitstring.Length / 8).Select(b => Convert.ToByte(bitstring.Substring(b * 8, 8), 2)).ToArray();
+
+                    // кодирование байтового массива как UTF-8
+                    string utf8String = Encoding.UTF8.GetString(bytes);
+                    string result = "";
+
+                    if (o == 3)
+                    {
+                        result = utf8String.TrimEnd('#');
                     }
                     else
                     {
-                        byte[] bytes = Enumerable.Range(0, bitstring.Length / 8).Select(b => Convert.ToByte(bitstring.Substring(b * 8, 8), 2)).ToArray();
+                        result = utf8String;
+                    }
 
-                        // Encode the byte array as UTF8
-                        string utf8String = Encoding.UTF8.GetString(bytes);
-                        string result = utf8String.TrimEnd('#');
+                    // формирование названия нового файла
+                    string outputFile = hidden_file.Replace(".wav", "_extracted.txt");
 
-                        // формирование названия нового файла
-                        string outputFile = hidden_file.Replace(".wav", "_extracted.txt");
+                    // запись пути сохранения нового аудиофайла в глобальную переменную
+                    GlobalClass.ExtractFileResult = outputFile;
 
-                        // запись пути сохранения нового аудиофайла в глобальную переменную
-                        GlobalClass.ExtractFileResult = outputFile;
-
+                    if (o == 3)
+                    {
                         using (var stream = new StreamWriter(outputFile, false, Encoding.UTF8))
                         {
-                            stream.Write(result, 0, result);
+                            stream.Write(result);
+                        }
+                    }
+
+                    else
+                    {
+                        using (var stream = new StreamWriter(outputFile))
+                        {
+                            stream.Write(result);
                         }
                     }
                 }
+
+                time.Stop();
+                GlobalClass.Time = time.ElapsedMilliseconds.ToString();
             }
             catch (IOException)
             {
                 // ЕСЛИ ИСХОДНЫЙ WAV АУДИО ФАЙЛ НЕ НАЙДЕН
                 MessageBox.Show($"Невозможно открыть WAV-файл.\nУказанное расположение: {GlobalClass.WAVfile}.\nНайдите и выберите существующий файл.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (ArgumentException)
-            {
-                // ЕСЛИ КЛЮЧ НЕПРАВИЛЬНЫЙ
-                MessageBox.Show($"Невозможно расшифровать WAV-файл.\nНеправильный ключ.\nВы ввели: {GlobalClass.secretKey}.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }

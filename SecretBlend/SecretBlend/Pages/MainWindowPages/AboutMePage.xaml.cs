@@ -25,17 +25,17 @@ namespace SecretBlend
 
         private void TelegramLink_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://t.me/vasilisa_kashperko") { UseShellExecute = true });
+            Task.Run(() => { Process.Start(new ProcessStartInfo("https://t.me/vasilisa_kashperko") { UseShellExecute = true }); });
         }
 
         private void InstagramLink_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://www.instagram.com/vasilisa.kashperko/") { UseShellExecute = true });
+            Task.Run(() => { Process.Start(new ProcessStartInfo("https://www.instagram.com/vasilisa.kashperko/") { UseShellExecute = true }); });
         }
 
         private void VKLink_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://vk.com/vasilisa_kashperko") { UseShellExecute = true });
+            Task.Run(() => { Process.Start(new ProcessStartInfo("https://vk.com/vasilisa_kashperko") { UseShellExecute = true }); });
         }
     }
 }
